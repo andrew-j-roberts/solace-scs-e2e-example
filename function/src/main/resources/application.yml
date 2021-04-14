@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: process
+      bindings:
+        process-in-0:
+          destination: processor_queue
+          group: group
+        process-out-0:
+          destination: topic/out/processor
+      solace:
+        bindings:
+          process-in-0:
+            consumer:
+              queueAdditionalSubscriptions: topic/out/supplier
+      binders:
+        solace-development:
+          type: solace
+          environment:
+            solace:
+              java:
+                host: tcp://localhost:55555
+                msgVpn: default
+                clientUsername: default
+                clientPassword: default

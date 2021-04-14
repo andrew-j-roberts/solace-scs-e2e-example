@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: consume
+      bindings:
+        consume-in-0:
+          destination: queue
+          group: group
+      solace:
+        bindings:
+          consume-in-0:
+            consumer:
+              queueAdditionalSubscriptions: topic/out/supplier
+      binders:
+        solace-development:
+          type: solace
+          environment:
+            solace:
+              java:
+                host: tcp://localhost:55555
+                msgVpn: default
+                clientUsername: default
+                clientPassword: default

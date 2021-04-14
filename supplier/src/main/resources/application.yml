@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: publish
+      bindings:
+        publish-out-0:
+          destination: topic/out/supplier
+      binders:
+        solace-development:
+          type: solace
+          environment:
+            solace:
+              java:
+                host: tcp://localhost:55555
+                msgVpn: default
+                clientUsername: default
+                clientPassword: default
